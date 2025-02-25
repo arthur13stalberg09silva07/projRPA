@@ -9,7 +9,7 @@ outlook = win32.Dispatch("outlook.application")
 email_out = outlook.CreateItem(0)
     
 email_out.To = "email.teste@germinare.org.br"
-email_out.Subject = f"PIASSO VAMO TOCAR JUNTOS - Email"  
+email_out.Subject = "Email"  
 
 email_out.HTMLBody = f"""
     <html>
