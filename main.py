@@ -1,5 +1,6 @@
 from banco import Banco
+import pandas as pd
 
 banco = Banco()
 
-print(banco.get_all_carros())
+pd.DataFrame(banco.get_all_carros()).to_excel("resultado.xlsx")
