@@ -1,6 +1,11 @@
 from banco import Banco
-import pandas as pd
+from planilha import Planilha
 
-banco = Banco()
+def main():
+    banco = Banco()
+    carros = banco.get_all_carros()
+    planilha = Planilha(carros)
+    planilha.criar_planilha()
 
-pd.DataFrame(banco.get_all_carros()).to_excel("resultado.xlsx")
+if __name__ == '__main__':
+    main()
