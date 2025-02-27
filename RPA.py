@@ -1,15 +1,14 @@
-# import win32com.client as win32
-# outlook = win32.Dispatch("outlook.application")
-# email_out = outlook.CreateItem(0)
 import win32com.client as win32
 import os
+
+caminho_arquivo = os.path.abspath("carros.xlsx")
 
 outlook = win32.Dispatch("outlook.application")
 
 email_out = outlook.CreateItem(0)
-    
-email_out.To = "email.teste@germinare.org.br"
-email_out.Subject = "Email"  
+
+email_out.To = "arthur.stalberg@germinare.org.br"
+email_out.Subject = "Email com Anexo"  
 
 email_out.HTMLBody = f"""
     <html>
@@ -21,7 +20,10 @@ email_out.HTMLBody = f"""
     </html>
     """
 
-email_out.Send()
-print("E-mail enviado com sucesso!")
+if os.path.exists(caminho_arquivo):
+    email_out.Attachments.Add(caminho_arquivo)
+else:
+    print("O arquivo não foi encontrado!")
 
-print("Todos os e-mails foram enviados!")
+email_out.Send()
+print("E-mail enviado com sucesso com o anexo!")
