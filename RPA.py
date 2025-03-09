@@ -1,29 +1,76 @@
-import win32com.client as win32
-import os
+import pyautogui as au
+from time import sleep
+class Rpa:
+    def __init__(self, cars):
+        self.__cars = cars
 
-caminho_arquivo = os.path.abspath("carros.xlsx")
+    def executar(self):
+        self.__abrir_excel()
+        self.__abrir_planilha()
+        self.__escrever_cabecalho()
+        self.__digitar_modelos()
 
-outlook = win32.Dispatch("outlook.application")
+    def __abrir_excel(self):
+        au.press("winleft")
+        sleep(3)
 
-email_out = outlook.CreateItem(0)
+        au.write("excel")
+        sleep(2)
 
-email_out.To = "arthur.stalberg@germinare.org.br"
-email_out.Subject = "Email com Anexo"  
+        au.press("enter")
+        sleep(2)
 
-email_out.HTMLBody = f"""
-    <html>
-        <body>
-            <p>
-                <a href="" target="_blank">Clique aqui para assistir ao vídeo</a>
-            </p>
-        </body>
-    </html>
-    """
+    def __abrir_planilha(self):
+        au.press("enter")
+        sleep(1)
 
-if os.path.exists(caminho_arquivo):
-    email_out.Attachments.Add(caminho_arquivo)
-else:
-    print("O arquivo não foi encontrado!")
+        au.press("enter")
+        sleep(1)
+        au.press("tab")
+        sleep(1)
 
-email_out.Send()
-print("E-mail enviado com sucesso com o anexo!")
+    def __escrever_cabecalho(self):
+        au.write("Modelo")
+        au.press("tab")
+        sleep(1)
+
+        au.write("Ano de lançamento")
+        au.press("tab")
+        sleep(1)
+
+        au.write("Cor")
+        au.press("tab")
+        sleep(1)
+
+        au.write("Empresa")
+        sleep(1)
+
+    def __digitar_modelos(self):
+        for cars in self.__cars:
+            au.hotkey("ctrl", "left")
+            sleep(0.5)
+
+            au.press("enter")
+            sleep(0.5)
+
+            print(f"Digitando o modelo: {cars["modelo"]}")
+            au.write(cars["modelo"])
+            sleep(0.5)
+            au.press("tab")
+            sleep(0.5)
+
+            print(f"Digitando o ano_lancamento: {str(cars["ano_lancamento"])}")
+            au.write(str(cars["ano_lancamento"]))
+            sleep(0.5)
+            au.press("tab")
+            sleep(0.5)
+
+            print(f"Digitando o cor: {cars["cor"]}")
+            au.write(cars["cor"])
+            sleep(0.5)
+            au.press("tab")
+            sleep(0.5)
+
+            print(f"Digitando o empresa: {cars["empresa"]}")
+            au.write(cars["empresa"])
+            sleep(0.5)
