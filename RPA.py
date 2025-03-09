@@ -53,24 +53,20 @@ class Rpa:
             au.press("enter")
             sleep(0.5)
 
-            print(f"Digitando o modelo: {cars["modelo"]}")
             au.write(cars["modelo"])
             sleep(0.5)
             au.press("tab")
             sleep(0.5)
 
-            print(f"Digitando o ano_lancamento: {str(cars["ano_lancamento"])}")
             au.write(str(cars["ano_lancamento"]))
             sleep(0.5)
             au.press("tab")
             sleep(0.5)
 
-            print(f"Digitando o cor: {cars["cor"]}")
             au.write(cars["cor"])
             sleep(0.5)
             au.press("tab")
             sleep(0.5)
 
-            print(f"Digitando o empresa: {cars["empresa"]}")
             au.write(cars["empresa"])
             sleep(0.5)
