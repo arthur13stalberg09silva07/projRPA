@@ -1,14 +1,20 @@
 import pyautogui as au
 from time import sleep
+import os
+
 class Rpa:
     def __init__(self, cars):
         self.__cars = cars
+        self.__save_path = os.path.join(os.path.expanduser("~"), "Downloads", "carros.xlsx")
+
 
     def executar(self):
         self.__abrir_excel()
         self.__abrir_planilha()
         self.__escrever_cabecalho()
         self.__digitar_modelos()
+        self.__salvar_planilha()
+        return self.__save_path
 
     def __abrir_excel(self):
         au.press("winleft")
@@ -70,3 +76,16 @@ class Rpa:
 
             au.write(cars["empresa"])
             sleep(0.5)
+    
+    def __salvar_planilha(self):
+        au.hotkey("ctrl", "b")  # Atalho para salvar a planilha
+        sleep(2)
+
+        au.write(self.__save_path)  # Confirmação do nome do arquivo (caso necessário)
+        sleep(2)
+
+
+        au.press("enter")  # Confirmação de sobrescrita (se aplicável)
+        sleep(2)
+
+        return self.__save_path
