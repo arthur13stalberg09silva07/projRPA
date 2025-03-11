@@ -9,6 +9,7 @@ def main():
     planilha.criar_planilha()
     rpa = Rpa(cars)
     rpa.executar()
+    banco.close_connection()
 
 if __name__ == '__main__':
     main()
