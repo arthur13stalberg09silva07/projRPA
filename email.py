@@ -8,7 +8,7 @@ def sendEmail(message):
 
         email_out = outlook.CreateItem(0)
 
-        email_out.To = "matheus.melo@germinare.org.br"
+        email_out.To = "pedro.gusmao@germinare.org.br"
         email_out.Subject = "Email com Anexo - Planilha de Carros"  
 
         email_out.HTMLBody = f"""

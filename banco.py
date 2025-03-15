@@ -21,3 +21,6 @@ class Banco:
         for row in cars_fetch:
             cars_list.append({"modelo": row[0], "ano_lancamento": row[1], "cor": row[2], "empresa": row[3]})
         return cars_list
+    
+    def close_connection(self):
+        self.__cur.close()

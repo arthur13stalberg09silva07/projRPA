@@ -1,7 +1,7 @@
 from banco import Banco
 from planilha import Planilha
 from RPA import Rpa
-from EMAIL import sendEmail
+from email import sendEmail
 def main():
     banco = Banco()
     cars = banco.get_all_carros()
@@ -10,7 +10,7 @@ def main():
     rpa = Rpa(cars)
     path = rpa.executar()
     sendEmail(path)
-
+    banco.close_connection()
 
 if __name__ == '__main__':
     main()
